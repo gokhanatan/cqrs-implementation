@@ -1,9 +1,11 @@
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using GreenPipes;
 using MassTransit;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using OrderWriteApi.Consumers.CommandHandlers;
 
 namespace OrderWriteApi.Extensions
 {
@@ -49,6 +51,7 @@ namespace OrderWriteApi.Extensions
         {
             services.AddMassTransit(x =>
             {
+                x.AddConsumer<CreateOrderCommandHandler>();
 
                 x.AddBus(context => Bus.Factory.CreateUsingRabbitMq(cfg =>
                 {
@@ -58,8 +61,17 @@ namespace OrderWriteApi.Extensions
                         hst.Password(configuration["RabbitMq:Password"]);
                     });
 
+                    cfg.ReceiveEndpoint("create-order-command-queue", ep =>
+                    {
+                        ep.PrefetchCount = 16;
+                        ep.UseMessageRetry(r => r.Interval(3,500));
+                        ep.ConfigureConsumer<CreateOrderCommandHandler>(context);
+                    });
+
                 }));
             });
+
+            services.AddMassTransitHostedService();
 
         }
     }

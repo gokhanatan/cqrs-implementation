@@ -10,5 +10,6 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="5.0.2"/>
     <PackageReference Include="MassTransit.RabbitMQ" Version="7.1.2"/>
     <PackageReference Include="MassTransit.Extensions.DependencyInjection" Version="7.1.2"/>
+    <PackageReference Include="MassTransit.AspNetCore" Version="7.1.2"/>
   </ItemGroup>
 </Project>
