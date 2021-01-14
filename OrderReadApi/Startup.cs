@@ -11,6 +11,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using OrderReadApi.DataAccess.Abstract;
+using OrderReadApi.DataAccess.Concrete;
 
 namespace OrderReadApi
 {
@@ -32,6 +34,8 @@ namespace OrderReadApi
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "OrderReadApi", Version = "v1" });
             });
+
+            services.AddScoped<IListingOrderRepository,ListingOrderRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
