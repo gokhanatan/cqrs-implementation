@@ -7,5 +7,8 @@
     <PackageReference Include="Microsoft.AspNetCore.Authentication.OpenIdConnect" Version="5.0.1" NoWarn="NU1605"/>
     <PackageReference Include="Swashbuckle.AspNetCore" Version="5.6.3"/>
     <PackageReference Include="MongoDB.Driver" Version="2.11.5"/>
+    <PackageReference Include="MassTransit.RabbitMQ" Version="7.1.2"/>
+    <PackageReference Include="MassTransit.Extensions.DependencyInjection" Version="7.1.2"/>
+    <PackageReference Include="MassTransit.AspNetCore" Version="7.1.2"/>
   </ItemGroup>
 </Project>

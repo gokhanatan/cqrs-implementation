@@ -2,7 +2,7 @@ using System.Threading.Tasks;
 using Microsoft.Extensions.Configuration;
 using MongoDB.Driver;
 using OrderReadApi.DataAccess.Abstract;
-using OrderReadApi.Models;
+using OrderReadApi.Models.Projections;
 
 namespace OrderReadApi.DataAccess.Concrete
 {
@@ -22,14 +22,6 @@ namespace OrderReadApi.DataAccess.Concrete
         public async Task Insert(ListingOrder listingOrderDocument)
         {
             await mongoCollection.InsertOneAsync(listingOrderDocument);
-        }
-
-        public async Task UpdateStatus(string code, string status)
-        {
-            var filterDefinition = Builders<ListingOrder>.Filter.Eq("Code", code);
-            var updateDefinition = Builders<ListingOrder>.Update.Set("Status", status);
-
-            await mongoCollection.UpdateOneAsync(filterDefinition, updateDefinition);
         }
 
         public async Task<ListingOrder> GetByCode(string code)

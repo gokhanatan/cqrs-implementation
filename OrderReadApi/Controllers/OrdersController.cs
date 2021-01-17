@@ -1,19 +1,27 @@
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using OrderReadApi.Services.Abstract;
 
 namespace OrderReadApi.Controllers
 {
     [Route("api/orderreader")]
     public class OrdersController : ControllerBase
     {
-        public OrdersController()
+        private readonly IOrderService _orderService;
+        public OrdersController(IOrderService orderService)
         {
-            
+            _orderService = orderService;
         }
 
         [HttpGet("getbycode")]
-        public IActionResult GetByCode(string code)
+        public async Task<IActionResult> GetByCode(string code)
         {
-            return Ok();
+            var listingOrder = await _orderService.GetByCode(code);
+
+            if (listingOrder == null)
+                return NotFound();
+
+            return Ok(listingOrder);
         }
     }
 }
