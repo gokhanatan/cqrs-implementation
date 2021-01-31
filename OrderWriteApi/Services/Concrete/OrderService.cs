@@ -18,6 +18,7 @@ namespace OrderWriteApi.Services.Concrete
         {
             var createOrderCommand = new CreateOrderCommand()
             {
+                Id = createOrderRequest.Id,
                 Code = createOrderRequest.Code,
                 UserId = createOrderRequest.UserId,
                 TotalPrice = createOrderRequest.TotalPrice

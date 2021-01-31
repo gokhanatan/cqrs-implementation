@@ -1,3 +1,4 @@
+using System;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using OrderWriteApi.Models;
@@ -18,6 +19,7 @@ namespace OrderWriteApi.Controllers
         [HttpPost("create")]
         public async Task<IActionResult> CreateOrder(CreateOrderRequest createOrderRequest)
         {
+            createOrderRequest.Id = Guid.NewGuid();
             await _orderService.CreateOrder(createOrderRequest);
 
             return Ok();
