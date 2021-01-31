@@ -4,6 +4,7 @@ using OrderWriteApi.Domain.Commands;
 using OrderWriteApi.Models;
 using OrderWriteApi.Services.Abstract;
 using OrderWriteApi.Extensions;
+using System;
 
 namespace OrderWriteApi.Services.Concrete
 {
@@ -18,6 +19,7 @@ namespace OrderWriteApi.Services.Concrete
         {
             var createOrderCommand = new CreateOrderCommand()
             {
+                Id = Guid.NewGuid(),
                 Code = createOrderRequest.Code,
                 UserId = createOrderRequest.UserId,
                 TotalPrice = createOrderRequest.TotalPrice

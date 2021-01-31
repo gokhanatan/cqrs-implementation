@@ -11,7 +11,7 @@ namespace OrderWriteApi.DataAccess.Concrete.EntityFramework.Mappings
             builder.ToTable("Order", "dbo");
             builder.HasKey(p => p.Id);
 
-            builder.Property(t => t.Id).HasColumnName("Id").HasColumnType("bigint").IsRequired().UseIdentityColumn();
+            builder.Property(t => t.Id).HasColumnName("Id"); //Primary key and identity UseIdentityColumn();
             builder.Property(t => t.Code).HasColumnName("Code").HasColumnType("nvarchar(250)").IsRequired();
             builder.Property(t => t.CreateDate).HasColumnName("CreateDate").HasColumnType("datetime").IsRequired();
             builder.Property(t => t.Status).HasColumnName("Status").HasColumnType("nvarchar(250)").IsRequired();

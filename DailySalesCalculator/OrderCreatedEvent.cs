@@ -4,7 +4,7 @@ namespace OrderWriteApi.Domain.Events
 {
     public class OrderCreatedEvent
     {
-        public long Id { get; private set; }
+        public Guid Id { get; private set; }
         public string OrderCode { get; private set; }
         public DateTime OrderDate { get; private set; }
         public int UserId { get; private set; }

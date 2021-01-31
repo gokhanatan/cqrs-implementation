@@ -17,8 +17,7 @@ namespace OrderWriteApi.DataAccess.Concrete.EntityFramework.Repositories
         }
         public async Task Create(Order order)
         {
-            _context.Orders.Add(order);
-            await _context.SaveChangesAsync();
+            await _context.AddAndSaveAsync(order);
         }
 
         public async Task<Order> GetByCode(string code)
